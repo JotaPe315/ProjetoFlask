@@ -1,8 +1,15 @@
 from flask import render_template
 from app import app
 
-@app.route("/index/<user>")
-@app.route("/", defaults={"user":None})
-def index(user):
-    return render_template('index2.html', 
-                           user=user)
+from app.models.forms import LoginForm
+
+@app.route("/index")
+@app.route("/")
+def index():
+    return render_template('index.html')
+
+@app.route("/login")
+def login():
+    form = LoginForm()
+    return render_template('login.html',
+                           form=form)
